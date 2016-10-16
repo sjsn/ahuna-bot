@@ -1,12 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway:800');
 
 body {
 	padding: 20px;
-	font-family: 'Droid Sans';
+	font-family: 'Raleway', sans-serif;
 	width: 100%;
 	height: 100%;
+	background-color: #95c6bf;
+	background-size: cover;
 }
 
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 53.3px;
+}
 #input {
 	width: 95%;
 	display: inline-block;
@@ -16,7 +23,7 @@ body {
 #convo {
 	height: 500px;
 	width: 100%;
-	background-color: lightgrey;
+	background-color: #95c6bf;
 	overflow-y: scroll;
 	overflow-x: none;
 	border-radius: 5px;
@@ -49,20 +56,43 @@ body {
 	background-color: lightblue;
 }
 
-#loading {
-	text-align: center;
-	font-size: 5rem;
-	color: white;
+#log-in, #sign-in{
+	width: 250px;
+	background-color: #95c6bf;
+	border:white;
+	font-size: 1.25em;
+	display: inline-block;
+	border-radius: 5px;
+	margin-left: 200px;
+	font-color: white;
 }
 
-.spin {
-	animation: spin 2s linear infinite;
+#send {
+	background-color: 
+}
+#settings, #log-out{
+	width: 100px;
+	height:auto;
+	margin-left: 1050px;
+
 }
 
-@keyframes spin {
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform:rotate(360deg);
-	}
+#textbox, #question {
+	width: 500px;
 }
+
+#log {
+	padding-left: 300px;
+	margin-bottom: 20px;
 }
+
+#back{
+	margin-left: 450px;
+	width: 250px;
+	background-color: #95c6bf;
+	display: inline-block;
+	border-radius: 5px;
+}
+ #log label {
+ 	color: white;
+ }
