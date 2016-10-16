@@ -1,20 +1,4 @@
-# ahuna-bot
-Mental health chat bot
+# Ahuna Bot
+A friendly chat bot that checks in on you both on the web and over sms to aid in keeping a positive mental state.
 
-# How to Dev:
-1. Install [Python 3](https://www.python.org/downloads/)
 
-# Run these commands from the command line/terminal (If these don't work. Run them as `sudo`):
-```
-2. pip install virtualenv
-3. virtualenv ahuna
-4. source ahuna/bin/activate
-5. pip install -r requirements.txt
-```
-
-# To run the app (From command line):
-```
-1. export FLASK_APP=app.py
-2. export FLASK_DEBUG=1
-3. flask run
-```
