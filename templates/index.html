@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ahuna Bot</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="/static/app.js"></script>
+	<script src="https://use.fontawesome.com/6d01efcfaa.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body ng-app="ahunaApp" ng-controller="MainCtrl" class="container">
+	<h1>Welcome to Ahuna-Bot!</h1>
+	<div id="convo">
+		<div id="bot-msg">
+				<p id="bot-head">Ahuna:</p>
+				<p id="bot">Hey, how are you doing?</p>
+		</div>
+		<hr />
+		<div class="holder" ng-repeat="msg in conversation track by $index">
+			<div ng-if="msg.author == 'bot'" id="bot-msg">
+				<p id="bot-head">Ahuna:</p>
+				<p id="bot">{{msg.text}}</p>
+			</div>
+			<div ng-if="msg.author == 'user'" id="user-msg">
+				<p id="msg-head">You:</p>
+				<p id="user">{{msg.text}}</p>
+			</div>
+		</div>
+		<div id="loading" ng-if="newOut"><i class="fa fa-spinner spin" aria-hidden="true"></i></div>
+	</div>
+	<div class="form-group" id="form">
+		<input class="form-control" id="input" type="text" placeholder="Type here" ng-model="text" />
+		<button id="send" ng-click="handleInput(text)" class="btn btn-primary"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+	</div>
+</body>
+</html>

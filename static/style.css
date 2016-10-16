@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+
+body {
+	padding: 20px;
+	font-family: 'Droid Sans';
+	width: 100%;
+	height: 100%;
+}
+
+#input {
+	width: 95%;
+	display: inline-block;
+	margin: auto;
+}
+
+#convo {
+	height: 500px;
+	width: 100%;
+	background-color: lightgrey;
+	overflow-y: scroll;
+	overflow-x: none;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+#user-msg, #bot-msg {
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+#user-msg {
+	background-color: white;
+	text-align: right;
+}
+
+#user, #msg-head, #bot, #bot-head {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#msg-head, #bot-head {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#bot-msg {
+	background-color: lightblue;
+}
+
+#loading {
+	text-align: center;
+	font-size: 5rem;
+	color: white;
+}
+
+.spin {
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+}
