@@ -5,3 +5,5 @@ node_modules
 ahuna/*
 
 __pycache__
+
+ahunabot.pem

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ahuna Bot - How are you doing?</title>
+	<script   src="http://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="/static/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body ng-app="ahunaApp" ng-controller="MainCtrl">
+	<h1>Welcome to Ahuna-Bot!</h1>
+	<div id="convo">
+		<p ng-repeat="text in test track by $index">{{text}}</p>
+	</div>
+	<div id="form">
+		<input id="input" type="text" placeholder="Type here" ng-model="text" />
+		<button id="send" ng-click="sendText(text)">Send </button>
+	</div>
+</body>
+</html>
