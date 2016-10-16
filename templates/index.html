@@ -13,18 +13,24 @@
 	<h1>Welcome to Ahuna-Bot!</h1>
 	<div id="convo">
 		<div id="bot-msg">
-			<p id="bot-head">Ahuna:</p>
-			<p id="bot">Hey, how are you doing?</p>
+				<p id="bot-head">Ahuna:</p>
+				<p id="bot">Hey, how are you doing?</p>
 		</div>
 		<hr />
-		<div ng-repeat="text in test track by $index" id="user-msg">
-			<p id="msg-head">You:</p>
-			<p id="user">{{text}}</p>
+		<div class="holder" ng-repeat="msg in conversation track by $index">
+			<div ng-if="msg.author == 'bot'" id="bot-msg">
+				<p id="bot-head">Ahuna:</p>
+				<p id="bot">{{msg.text}}</p>
+			</div>
+			<div ng-if="msg.author == 'user'" id="user-msg">
+				<p id="msg-head">You:</p>
+				<p id="user">{{msg.text}}</p>
+			</div>
 		</div>
 	</div>
 	<div class="form-group" id="form">
 		<input class="form-control" id="input" type="text" placeholder="Type here" ng-model="text" />
-		<button id="send" ng-click="addText(text)" class="btn btn-primary"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+		<button id="send" ng-click="handleInput(text)" class="btn btn-primary"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
 	</div>
 </body>
 </html>
