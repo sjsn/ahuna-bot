@@ -38,10 +38,12 @@ client = Algorithmia.client(apiKey)
 algo = client.algo('StanfordNLP/Lemmatizer/0.1.0')
 algo2 = client.algo('nlp/SentimentAnalysis/0.1.2')
 algo3 = client.algo('nlp/AutoTag/1.0.0')
+algo4 = client.algo('nlp/ProfanityDetection/0.1.2')
 
 # ChatBot Stuff
-chatbot = ChatBot('Ahuna',trainer='chatterbot.trainers.ChatterBotCorpusTrainer')
+chatbot = ChatBot('Ahuna',trainer='chatterbot.trainers.ChatterBotCorpusTrainer', storage_adapter="chatterbot.adapters.storage.JsonFileStorageAdapter", database="./database.json")
 chatbot.train("chatterbot.corpus.english.conversations")
+
 
 # Main front-end endpoint
 @app.route('/')
@@ -106,24 +108,24 @@ def process_message():
 		return jsonify({'text': "Glad to hear that you are doing good!"})
 	elif (result == 2): # Okay or Conversational
 		res = chatbot.get_response(text).text
+		res_prof = algo4.pipe(res).result
+		if len(res_prof) != 0:
+			res = "Sorry, I couldn't understand that."
+		return jsonify({'text': res})
 	else: # Poor to extremely bad
+		res = None
 		con = algo.pipe(text)
 		tags = algo3.pipe(con.result)
 		for a in tags.result:
 			for x in mainTags:
 				for y in mainTags[x]:
-					if (a == mainTags[x][y]):
+					if a == mainTags[x][y]:
 						rand = randint(0, 1)
 						res = resources[x][rand]['data']
-	return jsonify({'text': res})
+		if res is None:
+			res = "Oh no. Tell me more."
+		return jsonify({'text': res})
 
-# Helper function to decide how to proceed with user input based on sentiment
-def process_path(text, sentiment):
-	if sentiment == 4:
-		return "Glad to hear it!"
-	elif sentiment == 3:
-		return "Tell me more about that."
-	elif sentiment == 2:
-		return "Do you need to talk about it?"
-	else:
-		return "Do you need help?"
+
+if __name__ == '__main__':
+  app.run()
