@@ -8,6 +8,8 @@ node_modules
 
 ahuna/*
 
+ahunabot/*
+
 __pycache__
 
 ahunabot.pem
