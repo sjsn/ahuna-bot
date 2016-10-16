@@ -6,6 +6,7 @@ import requests
 from flaskext.mysql import MySQL
 import Algorithmia
 from chatterbot import ChatBot
+from random import randint
 
 # Declares flask app
 app = Flask(__name__)
@@ -32,8 +33,11 @@ jinja_options.update(dict(
 app.jinja_options = jinja_options
 
 # Algorithmia setup
-algo_client = Algorithmia.client('simfhoM+hauyAHChi7FC3WHahfq1')
-sentify = algo_client.algo('nlp/SentimentAnalysis/0.1.2')
+apiKey = 'simwZCh9tS6b81wSwLtrdIauZhi1'
+client = Algorithmia.client(apiKey)
+algo = client.algo('StanfordNLP/Lemmatizer/0.1.0')
+algo2 = client.algo('nlp/SentimentAnalysis/0.1.2')
+algo3 = client.algo('nlp/AutoTag/1.0.0')
 
 # ChatBot Stuff
 chatbot = ChatBot('Ahuna',trainer='chatterbot.trainers.ChatterBotCorpusTrainer')
@@ -63,17 +67,55 @@ def show_messages():
 	else:
 		return flask.jsonify(nums)
 
+mainTags = {
+ 	0: 
+ 		{
+ 			0: 'panic attack', 
+ 			1: 'panic'}, 
+ 	1: 
+ 		{
+ 			0: 'suicide', 
+ 			1: 'kill'}, 
+ 	2: 
+ 		{
+ 			0: 'break'}
+} 
+# Determines which group the message belongs to
+resources = {
+ 	0: 
+ 		{
+ 			0: {'type': 'url', 'data': 'https://www.lifeline.org.au/Get-Help/Facts---Information/Panic-Attacks/Panic-Attacks'}, 
+ 		 	1: {'type': 'phone-number', 'data': '800-64-PANIC'}}, 
+	1: 
+ 	 	{
+ 	 		0: {'type': 'url', 'data': 'http://suicidepreventionlifeline.org/#'}, 
+ 	 		1: {'type': 'phone-number', 'data': '1-800-273-8255'}},
+ 	 2: 
+ 	 	{
+ 	 		0: {'type': 'url', 'data': 'http://www.7cups.com/how-to-get-over-a-breakup/'}, 
+ 	 		1: {'type': 'phone-number', 'data': '741-741'}},
+ }
+
 # Handles receiving a web message
 @app.route('/api/chat/receive', methods=['GET'])
 def process_message():
 	text = request.values.get('text')
-	# get the sentiment
-	# sentiment = sentify.pipe(text).result
-	# Decide how to proceed
-	res = chatbot.get_response(text)
-	print(res.text)
-	# res = process_path(text, sentiment)
-	return jsonify({'text': res.text})
+	response = algo2.pipe(text)
+	result = response.result
+	if (result >= 3): # Good to great
+		return jsonify({'text': "Glad to hear that you are doing good!"})
+	elif (result == 2): # Okay or Conversational
+		res = chatbot.get_response(text).text
+	else: # Poor to extremely bad
+		con = algo.pipe(text)
+		tags = algo3.pipe(con.result)
+		for a in tags.result:
+			for x in mainTags:
+				for y in mainTags[x]:
+					if (a == mainTags[x][y]):
+						rand = randint(0, 1)
+						res = resources[x][rand]['data']
+	return jsonify({'text': res})
 
 # Helper function to decide how to proceed with user input based on sentiment
 def process_path(text, sentiment):
