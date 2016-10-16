@@ -6,10 +6,13 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.conversation = []
 	$scope.newOut = false;
 
+	var convo = document.getElementById('convo');
+
 	$scope.handleInput = function(text) {
 		$scope.text = "";
 		$scope.conversation.push({text: text, author: 'user'});
 		$scope.newOut = true;
+		convo.scrollTop = convo.scrollHeight;
 		// Uses a GET request for now. Fix later for security.
 		$http({
 			method: 'GET',
@@ -21,6 +24,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 				$scope.conversation.push({text: "I wasn't able to process that. Please try again.", author: 'bot'})
 			}
 			$scope.newOut = false;
+			convo.scrollTop = convo.scrollHeight;
 		});
 	};
 
