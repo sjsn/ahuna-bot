@@ -11,7 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body ng-app="ahunaApp" ng-controller="MainCtrl" class="container" background="/static/img/background.jpg">
-	<h1>Welcome to Ahuna-Bot!</h1>
+	<h1>Welcome to Ahuna Bot!</h1>
+	<div id="menu">
+		<div id="home"><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></div>
+		<div id="settings"><a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a></div>
+	</div>
 	<div id="convo">
 		<div id="bot-msg">
 				<p id="bot-head">Ahuna:</p>
@@ -34,7 +38,5 @@
 		<input class="form-control" id="input" type="text" placeholder="Type here" ng-model="text" />
 		<button id="send" ng-click="handleInput(text)" class="btn btn-primary"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
 	</div>
-	<img id="settings" src="/static/img/gear.png">
-	<img id="log-out" src="/static/img/exit.png">
 </body>
 </html>
