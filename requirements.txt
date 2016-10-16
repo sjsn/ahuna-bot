@@ -17,7 +17,6 @@ plivo==0.11.1
 pymongo==3.3.0
 PyMySQL==0.7.9
 PySocks==1.5.7
--e git://github.com/mikexstudios/python-firebase.git@fc0597aafb1cb83c76e039370b1e0e180322f0e0#egg=python_firebase
 python-twitter==3.1
 pytz==2016.7
 requests==2.11.1
