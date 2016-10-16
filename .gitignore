@@ -13,3 +13,5 @@ ahunabot/*
 __pycache__
 
 ahunabot.pem
+
+*.json
