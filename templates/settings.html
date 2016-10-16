@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ahuna Bot - How are you doing?</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="../static/app.js"></script>
+	<script src="https://use.fontawesome.com/6d01efcfaa.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body ng-app="ahunaApp" ng-controller="MainCtrl" class="container" background="background.jpg">
+	<h1 style = "padding-top: 250px;">Settings</h1>
+	<form id="log" action="demo_form.asp">
+		<input id="textbox" type="text" name="fname" placeholder="First Name">
+		<input id="textbox" type="text" name="initial" placeholder="Initial">
+		<input id="textbox" type="text" name="lname" placeholder="Last name">
+  		<input id="textbox" type="text" name="uname" placeholder="Username"><br>
+  		<input id="textbox" type="password" name="pword" placeholder="Password"><br>
+  		<input id="textbox" type="password" name="rpword" placeholder="Repeat Password"><br>
+  		<input id="textbox" type="text" name="phone" placeholder="Phone number"><br>
+  		<select id="questions">
+  			<option value="select">Choose one of the security questions</option>
+  			<option value="color">What is your favorite color?</option>
+  			<option value="city">What was your mom's birth city?</option>
+  			<option value="pet">What was the name of your first pet?</option>
+		</select><br>
+		<input id="textbox" type="text" name="sanswer" placeholder="Your Answer"><br>
+		<input type="checkbox" name="achoice" id="anon" value="Be anonymous" style="color: white;"> 
+		<label for="anon">Be anonymous</label><br>
+	</form>
+	<a href="file:///C:/Users/Madeleine%20Le/Desktop/DubHacks%202016/ahuna-bot/templates/index.html"><button id="back">Back to chat</a></button>
+</body>
+</html>
