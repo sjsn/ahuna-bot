@@ -11,13 +11,17 @@
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body ng-app="ahunaApp" ng-controller="LoginCtrl" class="container" background="/static/img/background.jpg">
-	<h1 style = "padding-top: 250px;">Welcome to Ahuna-Bot!</h1>
+	<h1 style = "padding-top: 250px;">Welcome to Ahuna Bot!</h1>
 	<div id="log">
 	<!-- <form id="log" action="demo_form.asp"> -->
   		<input id="textbox" type="text" name="fname" placeholder="Username" ng-model="username"><br>
   		<input id="textbox" type="password" name="pword" placeholder="Password" ng-model="pass"><br>
   		<a href="/chat"><button id="log-in" style="width: 100px;" ng-click="login(username, pass)">Log in</button>
 	<!-- </form> -->
+	</div>
+	<div id="footer">
+		<h2>Ahuna Bot is available via SMS!</h2>
+		<p>Text Ahuna Bot at (253)343-9145!</p>
 	</div>
 </body>
 </html>
