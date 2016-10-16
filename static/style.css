@@ -48,3 +48,21 @@ body {
 #bot-msg {
 	background-color: lightblue;
 }
+
+#loading {
+	text-align: center;
+	font-size: 5rem;
+	color: white;
+}
+
+.spin {
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+}

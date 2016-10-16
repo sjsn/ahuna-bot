@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ahuna Bot - How are you doing?</title>
+	<title>Ahuna Bot</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="/static/app.js"></script>
@@ -27,6 +27,7 @@
 				<p id="user">{{msg.text}}</p>
 			</div>
 		</div>
+		<div id="loading" ng-if="newOut"><i class="fa fa-spinner spin" aria-hidden="true"></i></div>
 	</div>
 	<div class="form-group" id="form">
 		<input class="form-control" id="input" type="text" placeholder="Type here" ng-model="text" />

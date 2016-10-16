@@ -4,6 +4,8 @@ from twilio import twiml
 from credentials import settings
 import requests
 from flaskext.mysql import MySQL
+import Algorithmia
+from chatterbot import ChatBot
 
 # Declares flask app
 app = Flask(__name__)
@@ -28,6 +30,14 @@ jinja_options.update(dict(
     comment_end_string='#>',
 ))
 app.jinja_options = jinja_options
+
+# Algorithmia setup
+algo_client = Algorithmia.client('simfhoM+hauyAHChi7FC3WHahfq1')
+sentify = algo_client.algo('nlp/SentimentAnalysis/0.1.2')
+
+# ChatBot Stuff
+chatbot = ChatBot('Ahuna',trainer='chatterbot.trainers.ChatterBotCorpusTrainer')
+chatbot.train("chatterbot.corpus.english.conversations")
 
 # Main front-end endpoint
 @app.route('/')
@@ -58,5 +68,20 @@ def show_messages():
 def process_message():
 	text = request.values.get('text')
 	# get the sentiment
+	# sentiment = sentify.pipe(text).result
 	# Decide how to proceed
-	return jsonify({'text': text})
+	res = chatbot.get_response(text)
+	print(res.text)
+	# res = process_path(text, sentiment)
+	return jsonify({'text': res.text})
+
+# Helper function to decide how to proceed with user input based on sentiment
+def process_path(text, sentiment):
+	if sentiment == 4:
+		return "Glad to hear it!"
+	elif sentiment == 3:
+		return "Tell me more about that."
+	elif sentiment == 2:
+		return "Do you need to talk about it?"
+	else:
+		return "Do you need help?"
