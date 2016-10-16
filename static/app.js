@@ -12,7 +12,6 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 		$scope.text = "";
 		$scope.conversation.push({text: text, author: 'user'});
 		$scope.newOut = true;
-		convo.scrollTop = convo.scrollHeight;
 		// Uses a GET request for now. Fix later for security.
 		$http({
 			method: 'GET',
@@ -26,6 +25,17 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 			$scope.newOut = false;
 			convo.scrollTop = convo.scrollHeight;
 		});
+		convo.scrollTop = convo.scrollHeight;
 	};
 
+}]);
+
+app.controller('LoginCtrl', ['$scope', function($scope) {
+
+	$scope.login = function(username, pass)	{
+		if (username == 'test' && pass == 'test') {
+			console.log("login");
+		}
+	};
+	
 }]);

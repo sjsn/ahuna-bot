@@ -47,7 +47,19 @@ chatbot.train("chatterbot.corpus.english.conversations")
 
 # Main front-end endpoint
 @app.route('/')
-def hello():
+def intro():
+	return render_template('intro.html')
+
+@app.route('/login')
+def login():
+	return render_template('log-in.html')
+
+@app.route('/signup')
+def signin():
+	return render_template('sign-in.html')
+
+@app.route('/chat')
+def chat():
 	return render_template('index.html')
 
 # Handle receiving text messages
@@ -98,15 +110,15 @@ resources = {
  	 		1: {'type': 'phone-number', 'data': '741-741'}},
  }
 
+concerned_option = ["Oh no. Tell me more.", "What's up?", "Is something wrong?", "Talk to me.", "Need to vent?", "Need to talk?", "I'm here for you.", "I'm listening."]
+
 # Handles receiving a web message
 @app.route('/api/chat/receive', methods=['GET'])
 def process_message():
 	text = request.values.get('text')
 	response = algo2.pipe(text)
 	result = response.result
-	if (result >= 3): # Good to great
-		return jsonify({'text': "Glad to hear that you are doing good!"})
-	elif (result == 2): # Okay or Conversational
+	if result >= 2: # Okay or Conversational
 		res = chatbot.get_response(text).text
 		res_prof = algo4.pipe(res).result
 		if len(res_prof) != 0:
@@ -123,7 +135,7 @@ def process_message():
 						rand = randint(0, 1)
 						res = resources[x][rand]['data']
 		if res is None:
-			res = "Oh no. Tell me more."
+			res = concerned_option[randint(0, 6)]
 		return jsonify({'text': res})
 
 

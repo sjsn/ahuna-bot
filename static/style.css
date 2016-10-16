@@ -59,12 +59,12 @@ h1 {
 #log-in, #sign-in{
 	width: 250px;
 	background-color: #95c6bf;
-	border:white;
+	border: white;
 	font-size: 1.25em;
 	display: inline-block;
 	border-radius: 5px;
 	margin-left: 200px;
-	font-color: white;
+	color: white;
 }
 
 #send {
@@ -75,6 +75,23 @@ h1 {
 	height:auto;
 	margin-left: 1050px;
 
+}
+
+#loading {
+ 	text-align: center;
+ 	font-size: 5rem;
+ 	color: white;
+}
+
+.spin {
+ 	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+ 	100% {
+ 		-webkit-transform: rotate(360deg);
+ 		transform:rotate(360deg);
+ 	}
 }
 
 #textbox, #question {
