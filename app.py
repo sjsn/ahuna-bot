@@ -46,4 +46,6 @@ def show_messages():
 @app.route('/api/chat/receive', methods=['GET'])
 def process_message():
 	text = request.args.get('text')
+	# get the sentiment
+	# Decide how to proceed
 	return jsonify({'text': text})
