@@ -83,6 +83,7 @@ h1 {
 	border-radius: 5px;
 	margin-left: 200px;
 	color: white;
+	margin-top: 10px;
 }
 
 #log-out{
@@ -127,4 +128,14 @@ h1 {
 }
  #log label {
  	color: white;
+ }
+
+ #footer {
+ 	margin-top: 50px;
+ 	color: white;
+ 	text-align: center;
+ }
+
+ #footer h2 {
+ 	text-decoration: underline;
  }

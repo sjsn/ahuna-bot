@@ -62,6 +62,10 @@ def signin():
 def chat():
 	return render_template('index.html')
 
+@app.route('/settings')
+def settings():
+	return render_template('settings.html')
+
 # Handle receiving text messages
 @app.route('/api/receive', methods=['POST'])
 def recieve_sms():
@@ -118,7 +122,7 @@ def process_message():
 	text = request.values.get('text')
 	response = algo2.pipe(text)
 	result = response.result
-	if result >= 2: # Okay or Conversational
+	if result >= 2: # Good, Okay, or Conversational
 		res = chatbot.get_response(text).text
 		res_prof = algo4.pipe(res).result
 		if len(res_prof) != 0:
